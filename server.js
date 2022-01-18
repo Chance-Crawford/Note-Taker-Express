@@ -11,11 +11,6 @@ const app = express();
 const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
 
-// sets up a path in reference to our server. such as <ourhost>/api
-// will define all api get and post route requests. Regular / will define the 
-// route to be served html pages.
-app.use('/api', apiRoutes);
-app.use('/', htmlRoutes);
 
 // express middleware
 // The express.urlencoded({extended: true}) method is a method built into Express.js. 
@@ -34,6 +29,15 @@ app.use(express.json());
 // whenever we sendFile() an html file and it calls css or js in its code with link or script.
 // the server will be able to recognize that call without an endpoint
 app.use(express.static('public'));
+
+
+// sets up a path in reference to our server. such as <ourhost>/api
+// will define all api get and post route requests. Regular / will define the 
+// route to be served html pages.
+// these functions must be right here above listen to work
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
+
 
 // makes server listen for requests to the server at designated port.
 app.listen(PORT, () => {
