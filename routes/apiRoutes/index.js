@@ -30,16 +30,24 @@ router.delete('/notes/:id', (req, res)=>{
 
     notes.forEach((note, index) =>{
         if(note.id === req.params.id){
-            newNotes = notes.splice(index, 1);
-            return;
+            // match the id of the note that needs to be deleted
+            // and then splice it from the array. deleting it
+            // at the index
+            notes.splice(index, 1);
         }
     });
 
-    if(newNotes){
+    if(notes){
+        // resave the array 
+        // with the deleted note now removed 
+        // by stringifying new changed array and writing it
+        // to the file
         fs.writeFileSync(path.join(__dirname, '../../db/db.json'),
-        JSON.stringify(newNotes, null, 2)
+        JSON.stringify(notes, null, 2)
         );
-        res.json(newNotes);
+        
+        // sending back the array of notes in the response
+        res.json(notes);
     }
     else{
         res.send(404);
