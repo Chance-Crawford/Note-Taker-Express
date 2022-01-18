@@ -7,8 +7,15 @@ const PORT = process.env.PORT || 3001;
 // instantiating the main server
 const app = express();
 
+// get the routes and api logic defined in these modules
 const apiRoutes = require('./routes/apiRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
+
+// sets up a path in reference to our server. such as <ourhost>/api
+// will define all api get and post route requests. Regular / will define the 
+// route to be served html pages.
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 // express middleware
 // The express.urlencoded({extended: true}) method is a method built into Express.js. 
@@ -24,4 +31,11 @@ app.use(express.json());
 // express.js - notes, creating routes to serve index.html.
 // tells the server to make all the files from public folder
 // readily available without needing a server endpoint.
+// whenever we sendFile() an html file and it calls css or js in its code with link or script.
+// the server will be able to recognize that call without an endpoint
 app.use(express.static('public'));
+
+// makes server listen for requests to the server at designated port.
+app.listen(PORT, () => {
+    console.log(`Server now on port ${PORT}!`);
+});
