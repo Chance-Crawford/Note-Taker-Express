@@ -157,7 +157,7 @@ const renderNoteList = async (notes) => {
   };
 
   if (jsonNotes.length === 0) {
-    noteListItems.push(createLi('No saved Notes', false));
+    noteListItems.push(createLi('No saved notes. To create a note fill out the empty fields and press the save icon in the top-right corner.', false));
   }
 
   jsonNotes.forEach((note) => {
