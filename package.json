@@ -9,6 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
-  }
+    "express": "^4.17.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chance-Crawford/Note-Taker-Express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Chance-Crawford/Note-Taker-Express/issues"
+  },
+  "homepage": "https://github.com/Chance-Crawford/Note-Taker-Express#readme"
 }
